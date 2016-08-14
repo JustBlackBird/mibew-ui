@@ -4,7 +4,9 @@ module.exports = {
     ],
     output: {
         path: './dist',
-        filename: 'operator_app.bundle.js'
+        filename: 'operator_app.bundle.js',
+        publicPath: '/',
+        library: 'OperatorApp'
     },
     module: {
         loaders: [{
@@ -12,5 +14,8 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel-loader'
         }]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     }
 };

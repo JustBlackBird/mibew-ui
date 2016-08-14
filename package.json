@@ -19,5 +19,9 @@
         "redux-thunk": "^2.1.0",
         "webpack": "^1.13.1",
         "webpack-dev-server": "^1.14.1"
+    },
+    "scripts": {
+        "build": "webpack",
+        "dev-server": "webpack-dev-server --content-base dist/"
     }
 }
