@@ -1,4 +1,5 @@
 import React from 'react';
+import Visitors from './visitors'
 
 export default React.createClass({
     render() {
@@ -6,6 +7,8 @@ export default React.createClass({
             <div>
                 <h1>Operator's home</h1>
                 <p>This is an operator's application!</p>
+                <hr />
+                <Visitors visitors={this.props.visitors} />
             </div>
         );
     }

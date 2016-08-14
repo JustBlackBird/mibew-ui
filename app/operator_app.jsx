@@ -5,7 +5,7 @@ import Application from './operator/application.jsx';
 
 export function run(initialState, rootElement) {
     ReactDOM.render(
-        <Application />,
+        <Application {...initialState}/>,
         rootElement
     );
 };
