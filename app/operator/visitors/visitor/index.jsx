@@ -3,6 +3,29 @@ import DetailedDescription from './detailed_description';
 import InviteButton from './invite_button';
 
 export default React.createClass({
+    propTypes: {
+        id: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string.isRequired,
+        firstSeen: React.PropTypes.instanceOf(Date).isRequired,
+        lastSeen: React.PropTypes.instanceOf(Date).isRequired,
+        onInvite: React.PropTypes.func.isRequired,
+        address: React.PropTypes.string,
+        invitedBy: React.PropTypes.string,
+        invitationTime: React.PropTypes.number,
+        invitationsCount: React.PropTypes.number,
+        chatsCount: React.PropTypes.number
+    },
+
+    getDefaultProps() {
+        return {
+            chatsCount: 0,
+            invitationsCount: 0,
+            address: '-',
+            invitedBy: null,
+            invitationTime: null,
+        };
+    },
+
     getInitialState() {
         return {isExpanded: false};
     },
