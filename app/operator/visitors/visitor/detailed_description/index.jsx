@@ -2,8 +2,8 @@ import React from 'react';
 
 export default React.createClass({
     propTypes: {
-        firstSeen: React.PropTypes.instanceOf(Date).isRequired,
-        lastSeen: React.PropTypes.instanceOf(Date).isRequired,
+        firstSeen: React.PropTypes.number.isRequired,
+        lastSeen: React.PropTypes.number.isRequired,
         address: React.PropTypes.string.isRequired,
         invitedBy: React.PropTypes.string,
         invitationTime: React.PropTypes.number,

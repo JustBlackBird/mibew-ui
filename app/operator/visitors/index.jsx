@@ -6,8 +6,8 @@ export default React.createClass({
         visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
             name: React.PropTypes.string.isRequired,
-            firstSeen: React.PropTypes.instanceOf(Date).isRequired,
-            lastSeen: React.PropTypes.instanceOf(Date).isRequired,
+            firstSeen: React.PropTypes.number.isRequired,
+            lastSeen: React.PropTypes.number.isRequired,
             address: React.PropTypes.string,
             invitedBy: React.PropTypes.string,
             invitiationTime: React.PropTypes.number,
