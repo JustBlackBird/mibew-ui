@@ -2,7 +2,7 @@
 
 This is just a proof-of-concept repository with new version of Mibew UI.
 
-## Warnig
+## Warning
 
 This project is totaly **experimental** and should not be considered as ready
 to use in any environment. Also it may be removed at any time once I decide
