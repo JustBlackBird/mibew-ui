@@ -3,18 +3,29 @@ import ReactDOM from 'react-dom';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {connect, Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import OperatorApp from './operator/application.jsx';
+import App from './operator/application.jsx';
+import * as actions from './operator/actions'
 import operatorReducers from './operator/reducers';
+import Server from './operator_server';
 
 let reducers = combineReducers({operator: operatorReducers});
 
-export function run(initialState, rootElement) {
-    let store = createStore(reducers, initialState, applyMiddleware(thunk));
-    let ConnectedOperatorApp = connect(state => state.operator)(OperatorApp);
+export function run(serverUrl, initialState, rootElement) {
+    let store = createStore(
+        reducers,
+        initialState,
+        applyMiddleware(thunk)
+    );
+    let ConnectedApp = connect(state => state.operator)(App);
+
+    let server = new Server(serverUrl, initialState.operator.id);
+    server.on('visitors_updated', (visitors) => {
+        store.dispatch(actions.updateVisitors(visitors))
+    });
 
     ReactDOM.render(
         <Provider store={store}>
-            <ConnectedOperatorApp />
+            <ConnectedApp />
         </Provider>,
         rootElement
     );
