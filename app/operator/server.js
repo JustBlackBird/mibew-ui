@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events';
-import MibewApi from './server/api/mibew_api';
-import UsersInteraction from './server/api/interactions/users_interaction';
-import Server from './server/server.js';
+import MibewApi from '../server/api/mibew_api';
+import UsersInteraction from '../server/api/interactions/users_interaction';
+import RpcServer from '../server/server.js';
 
 /**
  * Facade for old Mibew API implementation.
@@ -14,7 +14,7 @@ export default class extends EventEmitter {
         super();
 
         this._operatorId = operatorId;
-        this._server = new Server({
+        this._server = new RpcServer({
             url: baseUrl.replace(/\/$/, '') + '/operator/users/update',
             interactionType: UsersInteraction
         });

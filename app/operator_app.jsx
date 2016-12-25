@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import App from './operator/application.jsx';
 import * as actions from './operator/actions'
 import operatorReducers from './operator/reducers';
-import Server from './operator_server';
+import Server from './operator/server';
 
 let reducers = combineReducers({operator: operatorReducers});
 
