@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-var BaseInteraction = require('./base_interaction');
+var BaseInteraction = require('./interactions/base_interaction');
 
 /**
  * Mibew API class constructor

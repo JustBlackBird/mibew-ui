@@ -23,7 +23,7 @@ var BaseInteraction = require('./base_interaction');
  *
  * @constructor
  */
-UsersInteraction = function() {
+var UsersInteraction = function() {
     this.mandatoryArguments = function() {
         return {
             '*': {
