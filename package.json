@@ -22,6 +22,6 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev-server": "webpack-dev-server --content-base dist/"
+    "dev-server": "webpack-dev-server --colors --content-base dist/"
   }
 }
