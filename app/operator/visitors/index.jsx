@@ -1,5 +1,6 @@
 import React from 'react';
 import Visitor from './visitor';
+import * as actions from '../actions'
 
 export default React.createClass({
     propTypes: {
@@ -13,11 +14,12 @@ export default React.createClass({
             invitiationTime: React.PropTypes.number,
             invitationsCount: React.PropTypes.number,
             chatsCount: React.PropTypes.number
-        })).isRequired
+        })).isRequired,
+        dispatch: React.PropTypes.func.isRequired
     },
 
     handleInvite(visitorId) {
-        alert(`${visitorId} is invited`);
+        this.props.dispatch(actions.inviteVisitor(visitorId));
     },
 
     render() {
