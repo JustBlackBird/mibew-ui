@@ -2,9 +2,9 @@ import React from 'react';
 
 export default React.createClass({
     propTypes: {
-        firstSeen: React.PropTypes.number.isRequired,
-        lastSeen: React.PropTypes.number.isRequired,
-        address: React.PropTypes.string.isRequired,
+        firstTime: React.PropTypes.string.isRequired,
+        lastTime: React.PropTypes.string.isRequired,
+        remote: React.PropTypes.string.isRequired,
         invitedBy: React.PropTypes.string,
         invitationTime: React.PropTypes.number,
         invitationsCount: React.PropTypes.number.isRequired,
@@ -22,9 +22,9 @@ export default React.createClass({
         return (
             <dl>
                 <dt>First seen:</dt>
-                <dd>{this.props.firstSeen.toString()}</dd>
+                <dd>{this.props.firstTime}</dd>
                 <dt>Last seen:</dt>
-                <dd>{this.props.lastSeen.toString()}</dd>
+                <dd>{this.props.lastTime}</dd>
                 <dt>Address:</dt>
                 <dd>{this.props.address}</dd>
                 <dt>Invited by</dt>

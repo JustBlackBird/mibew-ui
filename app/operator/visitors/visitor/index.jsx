@@ -4,12 +4,12 @@ import InviteButton from './invite_button';
 
 export default React.createClass({
     propTypes: {
-        id: React.PropTypes.string.isRequired,
-        name: React.PropTypes.string.isRequired,
-        firstSeen: React.PropTypes.number.isRequired,
-        lastSeen: React.PropTypes.number.isRequired,
+        userId: React.PropTypes.string.isRequired,
+        userName: React.PropTypes.string.isRequired,
+        firstTime: React.PropTypes.string.isRequired,
+        lastTime: React.PropTypes.string.isRequired,
         onInvite: React.PropTypes.func.isRequired,
-        address: React.PropTypes.string,
+        remote: React.PropTypes.string,
         invitedBy: React.PropTypes.string,
         invitationTime: React.PropTypes.number,
         invitationsCount: React.PropTypes.number,
@@ -58,7 +58,7 @@ export default React.createClass({
         return (
             <div>
                 <div>
-                    <strong>{this.props.name}</strong>(
+                    <strong>{this.props.userName}</strong>(
                         {detailsButton}&nbsp;
                         <InviteButton
                             isInvited={!!this.props.invitedBy}

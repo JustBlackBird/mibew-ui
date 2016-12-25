@@ -5,11 +5,11 @@ import * as actions from '../actions'
 export default React.createClass({
     propTypes: {
         visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
-            id: React.PropTypes.string.isRequired,
-            name: React.PropTypes.string.isRequired,
-            firstSeen: React.PropTypes.number.isRequired,
-            lastSeen: React.PropTypes.number.isRequired,
-            address: React.PropTypes.string,
+            userId: React.PropTypes.string.isRequired,
+            userName: React.PropTypes.string.isRequired,
+            firstTime: React.PropTypes.string.isRequired,
+            lastTime: React.PropTypes.string.isRequired,
+            remote: React.PropTypes.string,
             invitedBy: React.PropTypes.string,
             invitiationTime: React.PropTypes.number,
             invitationsCount: React.PropTypes.number,
@@ -25,7 +25,7 @@ export default React.createClass({
     render() {
         let visitors = this.props.visitors.map(visitor => <Visitor
             {...visitor}
-            key={visitor.id}
+            key={visitor.userId}
             onInvite={this.handleInvite}
         />);
 
