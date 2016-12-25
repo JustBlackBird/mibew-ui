@@ -83,8 +83,8 @@ export default class extends EventEmitter {
             }
 
             args.visitors.forEach(visitor => {
-                args.lastTime = parseInt(args.lastTime) + delta;
-                args.firstTime = parseInt(args.firstTime) + delta;
+                visitor.lastTime = parseInt(visitor.lastTime) + delta;
+                visitor.firstTime = parseInt(visitor.firstTime) + delta;
             });
 
             this.emit('visitors_updated', args.visitors);

@@ -6,8 +6,8 @@ export default React.createClass({
     propTypes: {
         userId: React.PropTypes.string.isRequired,
         userName: React.PropTypes.string.isRequired,
-        firstTime: React.PropTypes.string.isRequired,
-        lastTime: React.PropTypes.string.isRequired,
+        firstTime: React.PropTypes.number.isRequired,
+        lastTime: React.PropTypes.number.isRequired,
         onInvite: React.PropTypes.func.isRequired,
         remote: React.PropTypes.string,
         invitedBy: React.PropTypes.string,
