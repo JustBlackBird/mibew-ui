@@ -5,15 +5,7 @@ import * as actions from '../actions'
 export default React.createClass({
     propTypes: {
         visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
-            userId: React.PropTypes.string.isRequired,
-            userName: React.PropTypes.string.isRequired,
-            firstTime: React.PropTypes.number.isRequired,
-            lastTime: React.PropTypes.number.isRequired,
-            remote: React.PropTypes.string,
-            invitedBy: React.PropTypes.string,
-            invitiationTime: React.PropTypes.number,
-            invitationsCount: React.PropTypes.number,
-            chatsCount: React.PropTypes.number
+            userId: React.PropTypes.string.isRequired
         })).isRequired,
         dispatch: React.PropTypes.func.isRequired
     },
