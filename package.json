@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev-server": "webpack-dev-server --colors --content-base dist/"
+    "dev-server": "webpack-dev-server --port 8000 --colors --content-base dist/"
   },
   "dependencies": {
     "events": "^1.1.1",
