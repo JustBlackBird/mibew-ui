@@ -1,6 +1,6 @@
 module.exports = {
     entry: [
-        './app/operator_app.jsx'
+        './src/operator_app.jsx'
     ],
     output: {
         path: './dist',
