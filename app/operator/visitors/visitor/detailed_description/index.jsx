@@ -10,13 +10,15 @@ export default React.createClass({
         invitationsCount: React.PropTypes.number.isRequired,
         chatsCount: React.PropTypes.number.isRequired,
         invitedBy: React.PropTypes.string,
-        invitationTime: React.PropTypes.number
+        invitationTime: React.PropTypes.number,
+        userAgent: React.PropTypes.string
     },
 
     getDefaultProps() {
         return {
             invitationTime: null,
-            invitedBy: '-'
+            invitedBy: '-',
+            userAgent: 'Unknown'
         };
     },
 
@@ -29,6 +31,8 @@ export default React.createClass({
                 <dd>{this._formatTimeDiff(this.props.lastTime)}</dd>
                 <dt>Address:</dt>
                 <dd>{this.props.remoteAddress}</dd>
+                <dt>User agent:</dt>
+                <dd>{this.props.userAgent}</dd>
                 <dt>Invited by</dt>
                 <dd>{this.props.invitedBy}</dd>
                 <dt>Invitation Time:</dt>
