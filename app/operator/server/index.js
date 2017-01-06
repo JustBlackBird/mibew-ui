@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events';
-import MibewApi from '../server/api/mibew_api';
-import UsersInteraction from '../server/api/interactions/users_interaction';
-import RpcServer from '../server/server.js';
+import MibewApi from '../../server/api/mibew_api';
+import UsersInteraction from '../../server/api/interactions/users_interaction';
+import RpcServer from '../../server/server.js';
 
 /**
  * Facade for old Mibew API implementation.
@@ -9,7 +9,7 @@ import RpcServer from '../server/server.js';
  * This class incapsulates all interaction related with operator's application.
  * In Mibew 2.x it's anything at Visitors page.
  */
-export default class extends EventEmitter {
+export default class OperatorServer extends EventEmitter {
     constructor(baseUrl, operatorId) {
         super();
 
