@@ -1,4 +1,5 @@
 import React from 'react';
+import * as moment from 'moment';
 
 export default React.createClass({
     propTypes: {
@@ -22,9 +23,9 @@ export default React.createClass({
         return (
             <dl>
                 <dt>First seen:</dt>
-                <dd>{this.props.firstTime}</dd>
+                <dd>{moment.unix(this.props.firstTime).fromNow()}</dd>
                 <dt>Last seen:</dt>
-                <dd>{this.props.lastTime}</dd>
+                <dd>{moment.unix(this.props.lastTime).fromNow()}</dd>
                 <dt>Address:</dt>
                 <dd>{this.props.address}</dd>
                 <dt>Invited by</dt>

@@ -27,6 +27,7 @@
   "dependencies": {
     "events": "^1.1.1",
     "jquery": "^3.1.0",
+    "moment": "^2.17.1",
     "underscore": "^1.8.3"
   }
 }
