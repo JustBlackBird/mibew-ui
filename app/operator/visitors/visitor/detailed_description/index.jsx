@@ -5,11 +5,12 @@ export default React.createClass({
     propTypes: {
         firstTime: React.PropTypes.number.isRequired,
         lastTime: React.PropTypes.number.isRequired,
-        remote: React.PropTypes.string.isRequired,
-        invitedBy: React.PropTypes.string,
-        invitationTime: React.PropTypes.number,
+        remoteAddress: React.PropTypes.string.isRequired,
+        ip: React.PropTypes.string.isRequired,
         invitationsCount: React.PropTypes.number.isRequired,
-        chatsCount: React.PropTypes.number.isRequired
+        chatsCount: React.PropTypes.number.isRequired,
+        invitedBy: React.PropTypes.string,
+        invitationTime: React.PropTypes.number
     },
 
     getDefaultProps() {
@@ -27,7 +28,7 @@ export default React.createClass({
                 <dt>Last seen:</dt>
                 <dd>{this._formatTimeDiff(this.props.lastTime)}</dd>
                 <dt>Address:</dt>
-                <dd>{this.props.address}</dd>
+                <dd>{this.props.remoteAddress}</dd>
                 <dt>Invited by</dt>
                 <dd>{this.props.invitedBy}</dd>
                 <dt>Invitation Time:</dt>

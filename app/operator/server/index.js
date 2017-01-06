@@ -2,6 +2,7 @@ import {EventEmitter} from 'events';
 import MibewApi from '../../server/api/mibew_api';
 import UsersInteraction from '../../server/api/interactions/users_interaction';
 import RpcServer from '../../server/server.js';
+import VisitorMapper from './mappers/visitor.js';
 
 /**
  * Facade for old Mibew API implementation.
@@ -74,7 +75,7 @@ export default class OperatorServer extends EventEmitter {
     _updateVisitors(args) {
 
         if (0 == args.errorCode) {
-            // Fix time difference between server and client
+            // Get time difference between server and client
             let delta;
             if (args.currentTime) {
                 delta = Math.round((new Date()).getTime() / 1000) - args.currentTime;
@@ -82,12 +83,10 @@ export default class OperatorServer extends EventEmitter {
                 delta = 0;
             }
 
-            args.visitors.forEach(visitor => {
-                visitor.lastTime = parseInt(visitor.lastTime) + delta;
-                visitor.firstTime = parseInt(visitor.firstTime) + delta;
-            });
+            const mapper = new VisitorMapper(delta);
+            const mapperFunc = mapper.mapVisitor.bind(mapper);
 
-            this.emit('visitors_updated', args.visitors);
+            this.emit('visitors_updated', args.visitors.map(mapperFunc));
         }
     }
 };

@@ -4,12 +4,14 @@ import InviteButton from './invite_button';
 
 export default React.createClass({
     propTypes: {
-        userId: React.PropTypes.string.isRequired,
-        userName: React.PropTypes.string.isRequired,
+        id: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string.isRequired,
         firstTime: React.PropTypes.number.isRequired,
         lastTime: React.PropTypes.number.isRequired,
         onInvite: React.PropTypes.func.isRequired,
-        remote: React.PropTypes.string,
+        ip: React.PropTypes.string,
+        remoteAdress: React.PropTypes.string,
+        userAgent:  React.PropTypes.string,
         invitedBy: React.PropTypes.string,
         invitationTime: React.PropTypes.number,
         invitationsCount: React.PropTypes.number,
@@ -20,9 +22,10 @@ export default React.createClass({
         return {
             chatsCount: 0,
             invitationsCount: 0,
-            address: '-',
+            remoteAddress: '-',
+            ip: '-',
             invitedBy: null,
-            invitationTime: null,
+            invitationTime: null
         };
     },
 
@@ -58,7 +61,7 @@ export default React.createClass({
         return (
             <div>
                 <div>
-                    <strong>{this.props.userName}</strong>(
+                    <strong>{this.props.name}</strong>(
                         {detailsButton}&nbsp;
                         <InviteButton
                             isInvited={!!this.props.invitedBy}

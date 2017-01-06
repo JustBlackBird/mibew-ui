@@ -5,7 +5,7 @@ import * as actions from '../actions'
 export default React.createClass({
     propTypes: {
         visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
-            userId: React.PropTypes.string.isRequired
+            id: React.PropTypes.string.isRequired
         })).isRequired,
         dispatch: React.PropTypes.func.isRequired
     },
@@ -17,7 +17,7 @@ export default React.createClass({
     render() {
         let visitors = this.props.visitors.map(visitor => <Visitor
             {...visitor}
-            key={visitor.userId}
+            key={visitor.id}
             onInvite={this.handleInvite}
         />);
 
