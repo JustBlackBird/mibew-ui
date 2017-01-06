@@ -26,6 +26,7 @@ export default class VisitorMapper {
         if (serverVisitor.invitationInfo) {
             visitor.details.initationTime = parseInt(serverVisitor.invitationInfo.time)
                 + this._timeDifference;
+            visitor.details.invitedBy = serverVisitor.invitationInfo.agentName;
         }
 
         return visitor;
