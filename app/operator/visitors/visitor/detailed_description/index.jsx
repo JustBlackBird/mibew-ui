@@ -14,7 +14,7 @@ export default React.createClass({
 
     getDefaultProps() {
         return {
-            invitationTime: '-',
+            invitationTime: null,
             invitedBy: '-'
         };
     },
@@ -23,18 +23,24 @@ export default React.createClass({
         return (
             <dl>
                 <dt>First seen:</dt>
-                <dd>{moment.unix(this.props.firstTime).fromNow()}</dd>
+                <dd>{this._formatTimeDiff(this.props.firstTime)}</dd>
                 <dt>Last seen:</dt>
-                <dd>{moment.unix(this.props.lastTime).fromNow()}</dd>
+                <dd>{this._formatTimeDiff(this.props.lastTime)}</dd>
                 <dt>Address:</dt>
                 <dd>{this.props.address}</dd>
                 <dt>Invited by</dt>
                 <dd>{this.props.invitedBy}</dd>
                 <dt>Invitation Time:</dt>
-                <dd>{this.props.invitationTime}</dd>
+                <dd>{this.props.invitationTime
+                    ? this._formatTimeDiff(this.props.invitationTime)
+                    : '-'}</dd>
                 <dt>Invitations / Chats:</dt>
                 <dd>{this.props.invitationsCount} / {this.props.chatsCount}</dd>
             </dl>
         );
+    },
+
+    _formatTimeDiff(timestamp) {
+        return moment.unix(timestamp).fromNow();
     }
 });
