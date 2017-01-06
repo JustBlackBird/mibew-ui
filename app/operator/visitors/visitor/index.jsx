@@ -6,27 +6,8 @@ export default React.createClass({
     propTypes: {
         id: React.PropTypes.string.isRequired,
         name: React.PropTypes.string.isRequired,
-        firstTime: React.PropTypes.number.isRequired,
-        lastTime: React.PropTypes.number.isRequired,
-        onInvite: React.PropTypes.func.isRequired,
-        ip: React.PropTypes.string,
-        remoteAdress: React.PropTypes.string,
-        userAgent:  React.PropTypes.string,
-        invitedBy: React.PropTypes.string,
-        invitationTime: React.PropTypes.number,
-        invitationsCount: React.PropTypes.number,
-        chatsCount: React.PropTypes.number
-    },
-
-    getDefaultProps() {
-        return {
-            chatsCount: 0,
-            invitationsCount: 0,
-            remoteAddress: '-',
-            ip: '-',
-            invitedBy: null,
-            invitationTime: null
-        };
+        isInvited: React.PropTypes.bool.isRequired,
+        details: React.PropTypes.object.isRequired
     },
 
     getInitialState() {
@@ -51,7 +32,7 @@ export default React.createClass({
     render() {
         let details = null;
         if (this.state.isExpanded) {
-            details = <DetailedDescription {...this.props} />;
+            details = <DetailedDescription {...this.props.details} />;
         }
 
         const detailsButton = this.state.isExpanded
@@ -64,7 +45,7 @@ export default React.createClass({
                     <strong>{this.props.name}</strong>(
                         {detailsButton}&nbsp;
                         <InviteButton
-                            isInvited={!!this.props.invitedBy}
+                            isInvited={this.props.isInvited}
                             onClick={this.handleInviteClick}
                         />
                     )

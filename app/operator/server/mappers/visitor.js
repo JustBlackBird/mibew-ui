@@ -11,18 +11,21 @@ export default class VisitorMapper {
 
         visitor.id = serverVisitor.userId;
         visitor.name = serverVisitor.userName;
-        visitor.ip = serverVisitor.userIp;
-        visitor.remoteAddress = serverVisitor.remote;
-        visitor.userAgent = serverVisitor.userAgent;
-        visitor.chatsCount = serverVisitor.chats;
-        visitor.invitationsCount = serverVisitor.invitations;
+        visitor.isInvited = !!serverVisitor.invitationInfo;
 
-        visitor.lastTime = parseInt(serverVisitor.lastTime) + this._timeDifference;
-        visitor.firstTime = parseInt(serverVisitor.firstTime) + this._timeDifference;
+        visitor.details = {
+            ip: serverVisitor.userIp,
+            remoteAddress: serverVisitor.remote,
+            userAgent: serverVisitor.userAgent,
+            chatsCount: serverVisitor.chats,
+            invitationsCount: serverVisitor.invitations,
+            lastTime: parseInt(serverVisitor.lastTime) + this._timeDifference,
+            firstTime: parseInt(serverVisitor.firstTime) + this._timeDifference
+        };
 
         if (serverVisitor.invitationInfo) {
-            const serverInvitationTime = parseInt(serverVisitor.invitationInfo.time);
-            visitor.initationTime = serverInvitationTime + this._timeDifference;
+            visitor.details.initationTime = parseInt(serverVisitor.invitationInfo.time)
+                + this._timeDifference;
         }
 
         return visitor;
