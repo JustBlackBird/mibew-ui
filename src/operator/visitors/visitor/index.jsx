@@ -30,28 +30,39 @@ export default React.createClass({
     },
 
     render() {
-        let details = null;
-        if (this.state.isExpanded) {
-            details = <DetailedDescription {...this.props.details} />;
-        }
-
-        const detailsButton = this.state.isExpanded
-            ? <a onClick={this.handleDetailsHideClick}>hide details</a>
-            : <a onClick={this.handleDetailsShowClick}>show details</a>;
-
         return (
             <div>
                 <div>
                     <strong>{this.props.name}</strong>(
-                        {detailsButton}&nbsp;
+                        {this.renderDetailsButton()}&nbsp;
                         <InviteButton
                             isInvited={this.props.isInvited}
                             onClick={this.handleInviteClick}
                         />
                     )
                 </div>
-                {details}
+                {this.renderDetails()}
             </div>
         );
+    },
+
+    renderDetailsButton() {
+        let callback, caption;
+
+        if (this.state.isExpanded) {
+            callback = this.handleDetailsHideClick;
+            caption = 'hide details';
+        } else {
+            callback = this.handleDetailsShowClick;
+            caption = 'show details';
+        }
+
+        return <a className="details-button" onClick={callback}>{caption}</a>;
+    },
+
+    renderDetails() {
+        return this.state.isExpanded
+            ? <DetailedDescription {...this.props.details} />
+            : null;
     }
 });
