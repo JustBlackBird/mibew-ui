@@ -1,17 +1,17 @@
 import {expect} from 'chai';
 import {updateVisitors} from '../actions';
-import reduceState from '../reducers';
+import reducers from '../reducers';
 
-describe('Visitors Reducers', () => {
+describe('Reducers', () => {
     describe('UPDATE_VISITORS', () => {
         it('should replace visitors with set from action', () => {
             const visitors = [{foo: 'bar', baz: 'quux'}];
-            const initialState = [];
+            const initialState = {visitors};
 
-            const newState = reduceState(initialState, updateVisitors(visitors));
+            const newState = reducers(initialState, updateVisitors(visitors));
 
             // The state is just visitors list.
-            expect(newState).to.deep.equal(visitors);
+            expect(newState.visitors).to.eql(visitors);
         });
     });
 });

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import * as actions from '../actions';
 
-describe('Visitors Actions', () => {
+describe('Actions', () => {
     describe('updateVisitors', () => {
         it('should set correct action type', () => {
             const action = actions.updateVisitors([]);
