@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import * as sinon from 'sinon';
 import InviteButton from '../invite_button';
@@ -29,7 +29,7 @@ describe('<InviteButton />', () => {
         it('should fire "onClick" callback', () => {
             const spy = sinon.spy();
 
-            const wrapper = mount(<InviteButton isInvited={false} onClick={spy} />);
+            const wrapper = shallow(<InviteButton isInvited={false} onClick={spy} />);
             wrapper.simulate('click');
 
             expect(spy.calledOnce).to.be.true;
