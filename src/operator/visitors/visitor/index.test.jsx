@@ -2,9 +2,9 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import * as faker from 'faker';
-import Visitor from '../';
-import InviteButton from '../invite_button';
-import DetailedDescription from '../detailed_description';
+import Visitor from './';
+import InviteButton from './invite_button';
+import DetailedDescription from './detailed_description';
 
 const getFakeDetails = () => {
     return {

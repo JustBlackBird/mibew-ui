@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import * as actions from '../actions';
+import * as actions from './';
 
 describe('Actions', () => {
     describe('updateVisitors', () => {

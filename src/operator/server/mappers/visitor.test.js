@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import * as faker from 'faker';
 import moment from 'moment';
-import VisitorMapper from '../visitor.js';
+import VisitorMapper from './visitor.js';
 
 const dateToUnixString = function(date) {
     return moment(date).unix().toString();

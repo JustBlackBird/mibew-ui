@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {updateVisitors} from '../actions';
-import reducers from '../reducers';
+import reducers from './';
 
 describe('Reducers', () => {
     describe('UPDATE_VISITORS', () => {

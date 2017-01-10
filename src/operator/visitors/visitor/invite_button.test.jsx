@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import * as sinon from 'sinon';
-import InviteButton from '../invite_button';
+import InviteButton from './invite_button';
 
 describe('<InviteButton />', () => {
     describe('inactive state (already invited visitor)', () => {
