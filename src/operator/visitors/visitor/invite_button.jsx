@@ -1,10 +1,6 @@
 import React from 'react';
 
-export default React.createClass({
-    propTypes: {
-        isInvited: React.PropTypes.bool.isRequired
-    },
-
+export default class InviteButton extends React.Component {
     render() {
         if (this.props.isInvited) {
             return null;
@@ -12,4 +8,8 @@ export default React.createClass({
 
         return <a onClick={this.props.onClick}>invite</a>;
     }
-});
+};
+
+InviteButton.propTypes = {
+    isInvited: React.PropTypes.bool.isRequired
+};
