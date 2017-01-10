@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {updateVisitors} from '../actions/';
+import {updateVisitors} from '../actions';
 import reduceState from '../reducers';
 
 describe('Visitors Reducers', () => {
