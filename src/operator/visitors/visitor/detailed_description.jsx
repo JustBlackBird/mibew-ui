@@ -23,25 +23,37 @@ export default React.createClass({
     },
 
     render() {
+        const invitationTime = this.props.invitationTime
+            ? this._formatTimeDiff(this.props.invitationTime)
+            : '-';
+
         return (
-            <dl>
-                <dt>First seen:</dt>
-                <dd>{this._formatTimeDiff(this.props.firstTime)}</dd>
-                <dt>Last seen:</dt>
-                <dd>{this._formatTimeDiff(this.props.lastTime)}</dd>
-                <dt>Address:</dt>
-                <dd>{this.props.remoteAddress}</dd>
-                <dt>User agent:</dt>
-                <dd>{this.props.userAgent}</dd>
-                <dt>Invited by</dt>
-                <dd>{this.props.invitedBy}</dd>
-                <dt>Invitation Time:</dt>
-                <dd>{this.props.invitationTime
-                    ? this._formatTimeDiff(this.props.invitationTime)
-                    : '-'}</dd>
-                <dt>Invitations / Chats:</dt>
-                <dd>{this.props.invitationsCount} / {this.props.chatsCount}</dd>
-            </dl>
+            <div>
+                <div className="first-time">
+                    First seen: {this._formatTimeDiff(this.props.firstTime)}
+                </div>
+                <div className="last-time">
+                    Last seen: {this._formatTimeDiff(this.props.lastTime)}
+                </div>
+                <div className="remote-address">
+                    Address: {this.props.remoteAddress}
+                </div>
+                <div className="user-agent">
+                    User agent: {this.props.userAgent}
+                </div>
+                <div className="invited-by">
+                    Invited by: {this.props.invitedBy}
+                </div>
+                <div className="invitation-time">
+                    Invitation time: {invitationTime}
+                </div>
+                <div className="chats-count">
+                    Chats: {this.props.chatsCount}
+                </div>
+                <div className="invitations-count">
+                    Invitations: {this.props.invitationsCount}
+                </div>
+            </div>
         );
     },
 
