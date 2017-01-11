@@ -1,27 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-export default React.createClass({
-    propTypes: {
-        firstTime: React.PropTypes.number.isRequired,
-        lastTime: React.PropTypes.number.isRequired,
-        remoteAddress: React.PropTypes.string.isRequired,
-        ip: React.PropTypes.string.isRequired,
-        invitationsCount: React.PropTypes.number.isRequired,
-        chatsCount: React.PropTypes.number.isRequired,
-        invitedBy: React.PropTypes.string,
-        invitationTime: React.PropTypes.number,
-        userAgent: React.PropTypes.string
-    },
-
-    getDefaultProps() {
-        return {
-            invitationTime: null,
-            invitedBy: '-',
-            userAgent: 'Unknown'
-        };
-    },
-
+export default class DetailedDescription extends React.Component {
     render() {
         const invitationTime = this.props.invitationTime
             ? this._formatTimeDiff(this.props.invitationTime)
@@ -55,9 +35,27 @@ export default React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
     _formatTimeDiff(timestamp) {
         return moment.unix(timestamp).fromNow();
     }
-});
+};
+
+DetailedDescription.propTypes = {
+    firstTime: React.PropTypes.number.isRequired,
+    lastTime: React.PropTypes.number.isRequired,
+    remoteAddress: React.PropTypes.string.isRequired,
+    ip: React.PropTypes.string.isRequired,
+    invitationsCount: React.PropTypes.number.isRequired,
+    chatsCount: React.PropTypes.number.isRequired,
+    invitedBy: React.PropTypes.string,
+    invitationTime: React.PropTypes.number,
+    userAgent: React.PropTypes.string
+};
+
+DetailedDescription.defaultProps = {
+    invitationTime: null,
+    invitedBy: '-',
+    userAgent: 'Unknown'
+};
