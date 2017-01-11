@@ -30,7 +30,9 @@ export default class Visitor extends React.Component {
         return (
             <div>
                 <div>
-                    <strong>{this.props.name}</strong>(
+                    <span className="visitor-name">
+                        <strong>{this.props.name}</strong>
+                    </span>(
                         {this.renderDetailsButton()}&nbsp;
                         <InviteButton
                             isInvited={this.props.isInvited}

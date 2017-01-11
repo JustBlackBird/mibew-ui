@@ -35,7 +35,8 @@ describe('<Visitor />', () => {
             details={getFakeDetails()}
         />);
 
-        expect(wrapper.html()).to.have.string(name);
+        expect(wrapper.find('.visitor-name')).to.have.length(1);
+        expect(wrapper.find('.visitor-name').text()).to.equal(name);
     });
 
     it('should have details button', () => {
