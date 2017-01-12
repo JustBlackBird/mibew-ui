@@ -3,7 +3,8 @@ import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import * as faker from 'faker';
 import * as sinon from 'sinon';
-import DetailedDescription from './index.jsx';
+import DetailedDescription from './index';
+import defaultTimeFormatter from './default_time_formatter'
 
 const getFakeDetails = () => {
     return {
@@ -146,5 +147,11 @@ describe('<DetailedDescription />', () => {
         expect(wrapper.find('.chats-count')).to.have.length(1);
         expect(wrapper.find('.chats-count').text())
             .to.equal('Chats: ' + details.chatsCount.toString());
+    });
+
+    it('should use default value if "timeFormatter" prop is omitted', () => {
+        const wrapper = shallow(<DetailedDescription {...getFakeDetails()} />);
+
+        expect(wrapper.instance().props.timeFormatter).to.equal(defaultTimeFormatter);
     });
 });

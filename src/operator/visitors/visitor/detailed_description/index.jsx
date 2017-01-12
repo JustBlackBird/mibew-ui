@@ -1,19 +1,19 @@
 import React from 'react';
-import moment from 'moment';
+import defaultTimeFormatter from './default_time_formatter';
 
 export default class DetailedDescription extends React.Component {
     render() {
         const invitationTime = this.props.invitationTime
-            ? this._formatTimeDiff(this.props.invitationTime)
+            ? this.props.timeFormatter(this.props.invitationTime)
             : '-';
 
         return (
             <div>
                 <div className="first-time">
-                    First seen: {this._formatTimeDiff(this.props.firstTime)}
+                    First seen: {this.props.timeFormatter(this.props.firstTime)}
                 </div>
                 <div className="last-time">
-                    Last seen: {this._formatTimeDiff(this.props.lastTime)}
+                    Last seen: {this.props.timeFormatter(this.props.lastTime)}
                 </div>
                 <div className="remote-address">
                     Address: {this.props.remoteAddress}
@@ -36,14 +36,6 @@ export default class DetailedDescription extends React.Component {
             </div>
         );
     }
-
-    _formatTimeDiff(timestamp) {
-        if (this.props.timeFormatter) {
-            return this.props.timeFormatter(timestamp);
-        }
-
-        return moment.unix(timestamp).fromNow();
-    }
 };
 
 DetailedDescription.propTypes = {
@@ -62,5 +54,6 @@ DetailedDescription.propTypes = {
 DetailedDescription.defaultProps = {
     invitationTime: null,
     invitedBy: '-',
-    userAgent: 'Unknown'
+    userAgent: 'Unknown',
+    timeFormatter: defaultTimeFormatter
 };
