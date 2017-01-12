@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import * as sinon from 'sinon';
 import InviteButton from './invite_button';
@@ -29,10 +29,17 @@ describe('<InviteButton />', () => {
         it('should fire "onClick" callback', () => {
             const spy = sinon.spy();
 
-            const wrapper = shallow(<InviteButton isInvited={false} onClick={spy} />);
+            const wrapper = mount(<InviteButton isInvited={false} onClick={spy} />);
             wrapper.simulate('click');
 
             expect(spy.calledOnce).to.be.true;
+        });
+
+        it('should works no "onClick" callback passed in', () => {
+            const wrapper = mount(<InviteButton isInvited={false} />);
+            // If something goes wrong the error will be thrown here. So
+            // "no errors" means everything is fine.
+            wrapper.simulate('click');
         });
     });
 });

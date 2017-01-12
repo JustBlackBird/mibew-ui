@@ -21,8 +21,7 @@ export default class Visitor extends React.Component {
         this.setState({isExpanded: false});
     }
 
-    handleInviteClick(event) {
-        event.preventDefault();
+    handleInviteClick() {
         this.props.onInvite(this.props.id);
     }
 
