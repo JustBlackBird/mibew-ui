@@ -35,7 +35,7 @@ describe('<InviteButton />', () => {
             expect(spy.calledOnce).to.be.true;
         });
 
-        it('should works no "onClick" callback passed in', () => {
+        it('should works even if no "onClick" callback passed in', () => {
             const wrapper = mount(<InviteButton isInvited={false} />);
             // If something goes wrong the error will be thrown here. So
             // "no errors" means everything is fine.
