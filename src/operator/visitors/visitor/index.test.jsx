@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
+import * as sinon from 'sinon';
 import * as faker from 'faker';
 import Visitor from './';
 import InviteButton from './invite_button';
@@ -123,5 +124,22 @@ describe('<Visitor />', () => {
         />);
 
         expect(wrapper.find(InviteButton).prop('isInvited')).to.equal(isInvited);
+    });
+
+    it('should fire "onInvite" callback once invitation button is clicked', () => {
+        const spy = sinon.spy();
+
+        const wrapper = shallow(<Visitor
+            id="foo"
+            name={getFakeName()}
+            isInvited={false}
+            details={getFakeDetails()}
+            onInvite={spy}
+        />);
+        // Simulate click on invitation button.
+        wrapper.find(InviteButton).prop('onClick')();
+
+        expect(spy.calledOnce).to.be.true;
+        expect(spy.calledWithExactly('foo')).to.be.true;
     });
 });
