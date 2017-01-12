@@ -5,7 +5,6 @@ import * as faker from 'faker';
 import * as sinon from 'sinon';
 import Visitors from './index.jsx';
 import Visitor from './visitor';
-import * as actions from '../actions';
 
 const getFakeVisitor = () => {
     return {
@@ -27,7 +26,7 @@ describe('<Visitors />', () => {
 
         const wrapper = shallow(<Visitors
             visitors={visitors}
-            dispatch={sinon.spy()}
+            onInvite={sinon.spy()}
         />);
 
         expect(wrapper.find(Visitor)).to.have.length(2);
@@ -38,7 +37,7 @@ describe('<Visitors />', () => {
 
         const wrapper = shallow(<Visitors
             visitors={[visitor]}
-            dispatch={sinon.spy()}
+            onInvite={sinon.spy()}
         />);
 
         expect(wrapper.find(Visitor).prop('name')).to.equal(visitor.name);
@@ -54,28 +53,25 @@ describe('<Visitors />', () => {
 
         const wrapper = shallow(<Visitors
             visitors={visitors}
-            dispatch={sinon.spy()}
+            onInvite={sinon.spy()}
         />);
 
         expect(wrapper.find(Visitor).at(0).prop('name')).to.equal(visitors[0].name);
         expect(wrapper.find(Visitor).at(1).prop('name')).to.equal(visitors[1].name);
     });
 
-    it('should dispatch INVITE_VISITOR action', () => {
+    it('should fire "onInvite" callback', () => {
         const spy = sinon.spy();
         const visitor = getFakeVisitor();
 
         const wrapper = shallow(<Visitors
             visitors={[visitor]}
-            dispatch={spy}
+            onInvite={spy}
         />);
         // Emulate vistor's invitation
         wrapper.find(Visitor).prop('onInvite')();
 
         expect(spy.calledOnce).to.be.true;
-        expect(spy.firstCall.args).to.have.length(1);
-        const event = spy.firstCall.args[0];
-        expect(event.type).to.equal(actions.INVITE_VISITOR);
-        expect(event.visitorId).to.equal(visitor.id);
+        expect(spy.calledWithExactly(visitor.id));
     });
 });

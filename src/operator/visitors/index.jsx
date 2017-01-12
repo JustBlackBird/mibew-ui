@@ -1,10 +1,9 @@
 import React from 'react';
 import Visitor from './visitor';
-import * as actions from '../actions'
 
 export default class Visitors extends React.Component {
     handleInvite(visitorId) {
-        this.props.dispatch(actions.inviteVisitor(visitorId));
+        this.props.onInvite(visitorId);
     }
 
     render() {
@@ -28,5 +27,5 @@ Visitors.propTypes = {
     visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired
     })).isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    onInvite: React.PropTypes.func
 };
