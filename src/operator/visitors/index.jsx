@@ -2,23 +2,16 @@ import React from 'react';
 import Visitor from './visitor';
 import * as actions from '../actions'
 
-export default React.createClass({
-    propTypes: {
-        visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
-            id: React.PropTypes.string.isRequired
-        })).isRequired,
-        dispatch: React.PropTypes.func.isRequired
-    },
-
+export default class Visitors extends React.Component {
     handleInvite(visitorId) {
         this.props.dispatch(actions.inviteVisitor(visitorId));
-    },
+    }
 
     render() {
         let visitors = this.props.visitors.map(visitor => <Visitor
             {...visitor}
             key={visitor.id}
-            onInvite={this.handleInvite}
+            onInvite={this.handleInvite.bind(this)}
         />);
 
         return (
@@ -29,4 +22,11 @@ export default React.createClass({
             </div>
         );
     }
-});
+};
+
+Visitors.propTypes = {
+    visitors: React.PropTypes.arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired
+    })).isRequired,
+    dispatch: React.PropTypes.func.isRequired
+};
