@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import * as faker from 'faker';
-import DetailedDescription from './detailed_description';
+import DetailedDescription from './index.jsx';
 
 const getFakeDetails = () => {
     return {
