@@ -17,8 +17,7 @@ const getFakeDetails = () => {
         chatsCount: faker.random.number(0, 10),
         invitedBy: faker.name.findName(),
         invitationTime: faker.random.number(1484044500, 1484045000),
-        userAgent: faker.internet.userAgent(),
-        timeFormatter: (timestamp) => {timestamp.toString()}
+        userAgent: faker.internet.userAgent()
     };
 };
 

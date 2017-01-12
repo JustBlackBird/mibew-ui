@@ -3,8 +3,8 @@ import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import * as faker from 'faker';
 import * as sinon from 'sinon';
-import DetailedDescription from './index';
-import defaultTimeFormatter from './default_time_formatter'
+import DetailedDescription from './detailed_description';
+import Timestamp from './timestamp';
 
 const getFakeDetails = () => {
     return {
@@ -23,32 +23,22 @@ const getFakeDetails = () => {
 describe('<DetailedDescription />', () => {
     it('should display first visit time', () => {
         const details = getFakeDetails();
-        const formatter = sinon.stub();
-        formatter.returns('foo');
 
-        const wrapper = shallow(<DetailedDescription
-            {...details}
-            timeFormatter={formatter}
-        />);
+        const wrapper = shallow(<DetailedDescription {...details} />);
 
-        expect(wrapper.find('.first-time')).to.have.length(1);
-        expect(wrapper.find('.first-time').text()).to.have.string('First seen: foo');
-        expect(formatter.calledWithExactly(details.firstTime)).to.be.true;
+        expect(wrapper.find('.first-time').matchesElement(
+            <div>First seen: <Timestamp value={details.firstTime} /></div>
+        )).to.be.true;
     });
 
     it('should display last visit time', () => {
         const details = getFakeDetails();
-        const formatter = sinon.stub();
-        formatter.returns('bar');
 
-        const wrapper = shallow(<DetailedDescription
-            {...details}
-            timeFormatter={formatter}
-        />);
+        const wrapper = shallow(<DetailedDescription {...details} />);
 
-        expect(wrapper.find('.last-time')).to.have.length(1);
-        expect(wrapper.find('.last-time').text()).to.have.string('Last seen: bar');
-        expect(formatter.calledWithExactly(details.lastTime)).to.be.true;
+        expect(wrapper.find('.last-time').matchesElement(
+            <div>Last seen: <Timestamp value={details.lastTime} /></div>
+        )).to.be.true;
     });
 
     it('should display remote address', () => {
@@ -104,18 +94,12 @@ describe('<DetailedDescription />', () => {
 
     it('should display invitation time', () => {
         const details = getFakeDetails();
-        const formatter = sinon.stub();
-        formatter.returns('baz');
 
-        const wrapper = shallow(<DetailedDescription
-            {...details}
-            timeFormatter={formatter}
-        />);
+        const wrapper = shallow(<DetailedDescription {...details} />);
 
-        expect(wrapper.find('.invitation-time')).to.have.length(1);
-        expect(wrapper.find('.invitation-time').text())
-            .to.have.string('Invitation time: baz');
-        expect(formatter.calledWithExactly(details.invitationTime)).to.be.true;
+        expect(wrapper.find('.invitation-time').matchesElement(
+            <div>Invitation time: <Timestamp value={details.invitationTime} /></div>
+        )).to.be.true;
     });
 
     it('should use default value if "invitationTime" prop is omitted', () => {
@@ -147,11 +131,5 @@ describe('<DetailedDescription />', () => {
         expect(wrapper.find('.chats-count')).to.have.length(1);
         expect(wrapper.find('.chats-count').text())
             .to.equal('Chats: ' + details.chatsCount.toString());
-    });
-
-    it('should use default value if "timeFormatter" prop is omitted', () => {
-        const wrapper = shallow(<DetailedDescription {...getFakeDetails()} />);
-
-        expect(wrapper.instance().props.timeFormatter).to.equal(defaultTimeFormatter);
     });
 });
