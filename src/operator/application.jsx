@@ -2,15 +2,10 @@ import React from 'react';
 import Visitors from './visitors';
 import * as actions from './actions';
 
-export default React.createClass({
-    propTypes: {
-        visitors: React.PropTypes.array.isRequired,
-        dispatch: React.PropTypes.func.isRequired
-    },
-
+export default class Application extends React.Component {
     handleInvite(visitorId) {
         this.props.dispatch(actions.inviteVisitor(visitorId));
-    },
+    }
 
     render() {
         return (
@@ -20,9 +15,14 @@ export default React.createClass({
                 <hr />
                 <Visitors
                     visitors={this.props.visitors}
-                    onInvite={this.handleInvite}
+                    onInvite={this.handleInvite.bind(this)}
                 />
             </div>
         );
     }
-});
+};
+
+Application.propTypes = {
+    visitors: React.PropTypes.array.isRequired,
+    dispatch: React.PropTypes.func.isRequired
+};
