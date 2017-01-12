@@ -11,7 +11,7 @@ export default class Visitors extends React.Component {
         let visitors = this.props.visitors.map(visitor => <Visitor
             {...visitor}
             key={visitor.id}
-            onInvite={this.handleInvite.bind(this)}
+            onInvite={() => {this.handleInvite(visitor.id)}}
         />);
 
         return (

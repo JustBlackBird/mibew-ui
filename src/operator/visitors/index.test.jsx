@@ -41,7 +41,6 @@ describe('<Visitors />', () => {
             dispatch={sinon.spy()}
         />);
 
-        expect(wrapper.find(Visitor).prop('id')).to.equal(visitor.id);
         expect(wrapper.find(Visitor).prop('name')).to.equal(visitor.name);
         expect(wrapper.find(Visitor).prop('isInvited')).to.equal(visitor.isInvited);
         expect(wrapper.find(Visitor).prop('details')).to.equal(visitor.details);
@@ -58,25 +57,25 @@ describe('<Visitors />', () => {
             dispatch={sinon.spy()}
         />);
 
-        expect(wrapper.find(Visitor).at(0).prop('id')).to.equal(visitors[0].id);
-        expect(wrapper.find(Visitor).at(1).prop('id')).to.equal(visitors[1].id);
+        expect(wrapper.find(Visitor).at(0).prop('name')).to.equal(visitors[0].name);
+        expect(wrapper.find(Visitor).at(1).prop('name')).to.equal(visitors[1].name);
     });
 
     it('should dispatch INVITE_VISITOR action', () => {
         const spy = sinon.spy();
-        const visitorId = 'foo.bar.baz';
+        const visitor = getFakeVisitor();
 
         const wrapper = shallow(<Visitors
-            visitors={[getFakeVisitor()]}
+            visitors={[visitor]}
             dispatch={spy}
         />);
         // Emulate vistor's invitation
-        wrapper.find(Visitor).prop('onInvite')(visitorId);
+        wrapper.find(Visitor).prop('onInvite')();
 
         expect(spy.calledOnce).to.be.true;
         expect(spy.firstCall.args).to.have.length(1);
         const event = spy.firstCall.args[0];
         expect(event.type).to.equal(actions.INVITE_VISITOR);
-        expect(event.visitorId).to.equal(visitorId);
+        expect(event.visitorId).to.equal(visitor.id);
     });
 });

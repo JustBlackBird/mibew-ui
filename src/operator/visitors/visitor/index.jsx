@@ -21,10 +21,6 @@ export default class Visitor extends React.Component {
         this.setState({isExpanded: false});
     }
 
-    handleInviteClick() {
-        this.props.onInvite(this.props.id);
-    }
-
     render() {
         return (
             <div>
@@ -35,7 +31,7 @@ export default class Visitor extends React.Component {
                         {this.renderDetailsButton()}&nbsp;
                         <InviteButton
                             isInvited={this.props.isInvited}
-                            onClick={this.handleInviteClick.bind(this)}
+                            onClick={this.props.onInvite}
                         />
                     )
                 </div>
@@ -66,7 +62,6 @@ export default class Visitor extends React.Component {
 };
 
 Visitor.propTypes = {
-    id: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     isInvited: React.PropTypes.bool.isRequired,
     details: React.PropTypes.object.isRequired

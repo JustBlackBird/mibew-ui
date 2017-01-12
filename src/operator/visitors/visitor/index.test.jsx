@@ -30,7 +30,6 @@ describe('<Visitor />', () => {
         const name = faker.name.findName();
 
         const wrapper = shallow(<Visitor
-            id="foo"
             name={name}
             isInvited={false}
             details={getFakeDetails()}
@@ -42,7 +41,6 @@ describe('<Visitor />', () => {
 
     it('should have details button', () => {
         const wrapper = shallow(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -53,7 +51,6 @@ describe('<Visitor />', () => {
 
     it('should not contain <DetailedDescription /> by default', () => {
         const wrapper = shallow(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -64,7 +61,6 @@ describe('<Visitor />', () => {
 
     it('should render <DetailedDescription /> when details are shown', () => {
         const wrapper = mount(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -77,7 +73,6 @@ describe('<Visitor />', () => {
 
     it('should remove <DetailedDescription /> when details are hidden', () => {
         const wrapper = mount(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -93,7 +88,6 @@ describe('<Visitor />', () => {
         const details = getFakeDetails();
 
         const wrapper = mount(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={details}
@@ -105,7 +99,6 @@ describe('<Visitor />', () => {
 
     it('should be contained <InviteButton />', () => {
         const wrapper = shallow(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -117,7 +110,6 @@ describe('<Visitor />', () => {
     it('should pass correct props to <InviteButton />', () => {
         const isInvited = faker.random.boolean();
         const wrapper = shallow(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={isInvited}
             details={getFakeDetails()}
@@ -130,7 +122,6 @@ describe('<Visitor />', () => {
         const spy = sinon.spy();
 
         const wrapper = shallow(<Visitor
-            id="foo"
             name={getFakeName()}
             isInvited={false}
             details={getFakeDetails()}
@@ -140,6 +131,5 @@ describe('<Visitor />', () => {
         wrapper.find(InviteButton).prop('onClick')();
 
         expect(spy.calledOnce).to.be.true;
-        expect(spy.calledWithExactly('foo')).to.be.true;
     });
 });
