@@ -38,6 +38,10 @@ export default class DetailedDescription extends React.Component {
     }
 
     _formatTimeDiff(timestamp) {
+        if (this.props.timeFormatter) {
+            return this.props.timeFormatter(timestamp);
+        }
+
         return moment.unix(timestamp).fromNow();
     }
 };
@@ -51,7 +55,8 @@ DetailedDescription.propTypes = {
     chatsCount: React.PropTypes.number.isRequired,
     invitedBy: React.PropTypes.string,
     invitationTime: React.PropTypes.number,
-    userAgent: React.PropTypes.string
+    userAgent: React.PropTypes.string,
+    timeFormatter: React.PropTypes.func
 };
 
 DetailedDescription.defaultProps = {
