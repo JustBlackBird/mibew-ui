@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {connect, Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import App from './operator/application.jsx';
 import * as actions from './operator/actions'
 import operatorReducers from './operator/reducers';
