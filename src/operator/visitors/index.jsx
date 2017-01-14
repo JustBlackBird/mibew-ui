@@ -1,5 +1,6 @@
 import React from 'react';
 import Visitor from './visitor';
+import {ListGroup} from 'react-bootstrap';
 
 export default class Visitors extends React.Component {
     handleInvite(visitorId) {
@@ -14,11 +15,11 @@ export default class Visitors extends React.Component {
         />);
 
         return (
-            <div>
+            <ListGroup>
                 <h2>Visitors on site</h2>
                 <hr />
                 <div>{visitors}</div>
-            </div>
+            </ListGroup>
         );
     }
 };

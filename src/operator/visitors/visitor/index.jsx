@@ -1,6 +1,7 @@
 import React from 'react';
 import DetailedDescription from './detailed_description';
 import InviteButton from './invite_button';
+import {ListGroupItem} from 'react-bootstrap';
 
 export default class Visitor extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export default class Visitor extends React.Component {
 
     render() {
         return (
-            <div>
+            <ListGroupItem>
                 <div>
                     <span className="visitor-name">
                         <strong>{this.props.name}</strong>
@@ -36,7 +37,7 @@ export default class Visitor extends React.Component {
                     )
                 </div>
                 {this.renderDetails()}
-            </div>
+            </ListGroupItem>
         );
     }
 
