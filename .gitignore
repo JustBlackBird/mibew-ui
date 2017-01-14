@@ -2,3 +2,5 @@
 node_modules
 # Ignore application build.
 dist
+# Ignore Vagrant runtime files
+.vagrant

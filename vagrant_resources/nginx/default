@@ -1,0 +1,20 @@
+server {
+    listen 80;
+
+    location / {
+        # The main app should be served by Apache which listens
+        # to port 8080.
+        proxy_pass http://localhost:8080;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Host $host:$server_port;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /mibew/ui/ {
+        # Compiled UI app should be served by Webpack dev server
+        # which listens to port 8000. Don't forget to run the
+        # dev server!
+        proxy_pass http://localhost:8000/;
+    }
+}
