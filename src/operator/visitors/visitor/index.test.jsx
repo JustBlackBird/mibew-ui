@@ -3,6 +3,7 @@ import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 import * as sinon from 'sinon';
 import * as faker from 'faker';
+import {Glyphicon} from 'react-bootstrap';
 import Visitor from './';
 import InviteButton from './invite_button';
 import DetailedDescription from './detailed_description';
@@ -46,7 +47,38 @@ describe('<Visitor />', () => {
             details={getFakeDetails()}
         />);
 
-        expect(wrapper.find('.details-button')).to.have.length(1);
+        expect(wrapper.containsMatchingElement(
+            <Glyphicon glyph="chevron-down" className="details-button" />
+        )).to.be.true;
+    });
+
+    it('should change glyph on details buton on click', () => {
+        const wrapper = mount(<Visitor
+            name={getFakeName()}
+            isInvited={false}
+            details={getFakeDetails()}
+        />);
+
+        wrapper.find('.details-button').simulate('click');
+
+        expect(wrapper.containsMatchingElement(
+            <Glyphicon glyph="chevron-up" className="details-button" />
+        )).to.be.true;
+    });
+
+    it('should restore original glyph on details button after two clicks', () => {
+        const wrapper = mount(<Visitor
+            name={getFakeName()}
+            isInvited={false}
+            details={getFakeDetails()}
+        />);
+
+        wrapper.find('.details-button').simulate('click');
+        wrapper.find('.details-button').simulate('click');
+
+        expect(wrapper.containsMatchingElement(
+            <Glyphicon glyph="chevron-down" className="details-button" />
+        )).to.be.true;
     });
 
     it('should not contain <DetailedDescription /> by default', () => {

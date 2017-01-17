@@ -1,7 +1,7 @@
 import React from 'react';
 import DetailedDescription from './detailed_description';
 import InviteButton from './invite_button';
-import {ListGroupItem} from 'react-bootstrap';
+import {ListGroupItem, Glyphicon} from 'react-bootstrap';
 
 export default class Visitor extends React.Component {
     constructor(props) {
@@ -24,17 +24,18 @@ export default class Visitor extends React.Component {
 
     render() {
         return (
-            <ListGroupItem>
+            <ListGroupItem className="clearfix">
                 <div>
                     <span className="visitor-name">
                         <strong>{this.props.name}</strong>
-                    </span>(
-                        {this.renderDetailsButton()}&nbsp;
-                        <InviteButton
-                            isInvited={this.props.isInvited}
-                            onClick={this.props.onInvite}
-                        />
-                    )
+                    </span>
+                    (<InviteButton
+                        isInvited={this.props.isInvited}
+                        onClick={this.props.onInvite}
+                    />)
+                    <span className="pull-right">
+                        {this.renderDetailsButton()}
+                    </span>
                 </div>
                 {this.renderDetails()}
             </ListGroupItem>
@@ -42,17 +43,22 @@ export default class Visitor extends React.Component {
     }
 
     renderDetailsButton() {
-        let callback, caption;
+        let callback, glyph;
 
         if (this.state.isExpanded) {
             callback = this.handleDetailsHideClick.bind(this);
-            caption = 'hide details';
+            glyph = 'chevron-up';
         } else {
             callback = this.handleDetailsShowClick.bind(this);
-            caption = 'show details';
+            glyph = 'chevron-down';
         }
 
-        return <a className="details-button" onClick={callback}>{caption}</a>;
+        return <Glyphicon
+            glyph={glyph}
+            className="details-button"
+            onClick={callback}
+            role="button"
+        />;
     }
 
     renderDetails() {
