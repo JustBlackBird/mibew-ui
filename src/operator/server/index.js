@@ -73,20 +73,28 @@ export default class OperatorServer extends EventEmitter {
    }
 
     _updateVisitors(args) {
-
         if (0 == args.errorCode) {
-            // Get time difference between server and client
-            let delta;
-            if (args.currentTime) {
-                delta = Math.round((new Date()).getTime() / 1000) - args.currentTime;
-            } else {
-                delta = 0;
-            }
+            const delta = this._getTimeDiff(args.currentTime);
 
             const mapper = new VisitorMapper(delta);
             const mapperFunc = mapper.mapVisitor.bind(mapper);
 
             this.emit('visitors_updated', args.visitors.map(mapperFunc));
         }
+    }
+
+    /**
+     * Claculates difference between server and client time.
+     *
+     * @param {Number|null} serverTime Unix timestampt for the current server
+     *   time.
+     * @returns {Number}
+     */
+    _getTimeDiff(serverTime) {
+        if (!serverTime) {
+            return 0;
+        }
+
+        return Math.round((new Date()).getTime() / 1000) - serverTime;
     }
 };
